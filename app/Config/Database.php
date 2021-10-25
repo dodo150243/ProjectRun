@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'alumni_project',
+        'database' => 'fun',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

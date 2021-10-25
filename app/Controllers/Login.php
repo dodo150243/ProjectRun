@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\UserModel;
+use App\Models\MemberModel;
 
 class Login extends Controller
 {
@@ -31,42 +31,22 @@ class Login extends Controller
     public function auth()
     {
         $session = session();
-        $model = new UserModel();
-        $stu_id = $this->request->getVar('stu_id');
+        $member = new MemberModel();
+        $stu_id = $this->request->getVar('id_card');
         $password = $this->request->getVar('password');
-        $data = $model->where('stu_id', $stu_id)->first();
+        $data = $member->where('id_card', $stu_id)->first();
         if ($data) {
             $pass = $data['password'];
             $verify_password = password_verify($password, $pass);
             if ($verify_password) {
                 $ses_data = [
-                    'user_id' => $data['user_id'],
-                    'stu_id' => $data['stu_id'],
-                    'name_prefix' => $data['name_prefix'],
-                    'FName' => $data['FName'],
-                    'LName' => $data['LName'],
-                    'FName_eng' => $data['FName_eng'],
-                    'LName_eng' => $data['LName_eng'],
-                    'id_cardnumber' => $data['id_cardnumber'],
-                    'sex' => $data['sex'],
-                    'faculty' => $data['faculty'],
-                    'major' => $data['major'],
-                    'section' => $data['section'],
-                    'edu_level' => $data['edu_level'],
-                    'first_year' => $data['first_year'],
-                    'd_m_y_birth' => $data['d_m_y_birth'],
-                    'province_birth' => $data['province_birth'],
-                    'nationality' => $data['nationality'],
-                    'religion' => $data['religion'],
-                    'blood_type' => $data['blood_type'],
-                    'Address' => $data['Address'],
-                    'SubDistrict' => $data['SubDistrict'],
-                    'District' => $data['District'],
-                    'Province' => $data['Province'],
-                    'Zipcode' => $data['Zipcode'],
-                    'phone_number' => $data['phone_number'],
-                    'status_work' => $data['status_work'],
-                    'company_name' => $data['company_name'],
+                    'id_card' => $data['id_card'],
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'age' => $data['age'],
+                    'email' => $data['email'],
+                    
+                   
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);

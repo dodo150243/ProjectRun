@@ -38,6 +38,8 @@ $routes->get('login','Login::index');
 $routes->get('/','Login::logout');
 // Register
 $routes->get('register','Register::index');
+$routes->post('register','Register::save');
+
 
 // page_search
  $routes->get('search_page_index', 'Search::search');
